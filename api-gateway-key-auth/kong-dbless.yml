@@ -1,0 +1,40 @@
+version: "3.9"
+networks:
+  default:
+    name: kong-net
+
+services:
+
+  ###
+  ### Kong API Gateway
+  ### Container com o runtime do Kong API Gateway
+  ###
+  kong:
+    image: kong:2.5.0-alpine
+    hostname: kong
+    container_name: kong
+    environment:
+      KONG_DATABASE: 'off'
+      KONG_PROXY_ACCESS_LOG: '/dev/stdout'
+      KONG_ADMIN_ACCESS_LOG: '/dev/stdout'
+      KONG_PROXY_ERROR_LOG: '/dev/stderr'
+      KONG_ADMIN_ERROR_LOG: '/dev/stderr'
+      KONG_ADMIN_LISTEN: "0.0.0.0:8001, 0.0.0.0:8444 ssl"
+      KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yaml"
+      KONG_LOG_LEVEL: info
+    command: "kong start -c /opt/kong/kong.yaml"
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+      - "8444:8444"
+    volumes: 
+      - ./config:/opt/kong
+
+  view:
+    build: ../view-headers
+    image: view-headers
+    hostname: view
+    container_name: view
+    ports: 
+    - "5000:5000"

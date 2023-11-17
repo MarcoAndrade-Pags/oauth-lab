@@ -1,0 +1,42 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+  - name: quote-service
+    url: http://quotes:8080
+    routes:
+      - name: quote-service-routes
+        paths:
+          - /quote
+        strip_path: true
+  - name: view-service
+    url: http://view:5000
+    routes:
+      - name: view-routes
+        paths:
+          - /.*
+        strip_path: true
+  
+consumers:
+- custom_id: SOME_CUSTOM_ID1
+  keyauth_credentials:
+    - key: KeyValidANDUnique
+    - key: ABC
+- username: user123
+  custom_id: SOME_CUSTOM_ID2
+  keyauth_credentials:
+    - key: Token1
+    - key: Token2
+
+plugins:
+- name: key-auth
+  config:
+    key_names:
+    - apikey
+    hide_credentials: true
+    key_in_body: false
+    key_in_query: false
+  
+  protocols:
+    - http
+    - https
