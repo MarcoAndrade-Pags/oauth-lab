@@ -80,3 +80,11 @@ Nesta abordagem, incremental foi demonstrada uma hipotese para a coexistencia de
 
 O proposito é manter o mesmo identificador, e dar tempo para a rotação do segredo na aplicação.
 
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```

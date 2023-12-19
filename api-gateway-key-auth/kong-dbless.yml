@@ -38,3 +38,29 @@ services:
     container_name: view
     ports: 
     - "5000:5000"
+
+  vault:
+    image: hashicorp/vault:latest
+    hostname: vault
+    container_name: vault
+    cap_add:
+      - IPC_LOCK
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: 'Vault-Token'
+      SKIP_SETCAP: true
+    command: server -dev -dev-root-token-id="Vault-Token"
+    ports: 
+    - "8200:8200"
+
+
+  # Faz o setup do Vault e Kong
+  bootstrap:
+    build: ./bootstrap
+    hostname: bootstrap
+    container_name: bootstrap
+    environment:
+      VAULT_TOKEN: 'Vault-Token'
+      VAULT_ADDR: "http://vault:8200"
+    depends_on:
+      - kong
+      - vault

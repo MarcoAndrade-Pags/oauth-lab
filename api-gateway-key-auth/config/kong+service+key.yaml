@@ -21,7 +21,6 @@ consumers:
 - custom_id: SOME_CUSTOM_ID1
   keyauth_credentials:
     - key: KeyValidANDUnique
-    - key: ABC
 - username: user123
   custom_id: SOME_CUSTOM_ID2
   keyauth_credentials:

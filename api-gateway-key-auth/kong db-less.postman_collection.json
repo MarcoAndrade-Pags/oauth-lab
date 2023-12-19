@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b7c57b46-9022-43bb-8471-6e0b0f27213e",
+		"_postman_id": "db755796-fee6-4d61-a0ee-d1b4caeeef30",
 		"name": "kong db-less",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "6681980"
@@ -386,6 +386,24 @@
 			"name": "Explore admin calls",
 			"item": [
 				{
+					"name": "getKeyAuths",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/key-auths",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"key-auths"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Consumo with Key",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -626,24 +644,6 @@
 							"port": "8001",
 							"path": [
 								"routes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getKeyAuths",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8001/key-auths",
-							"host": [
-								"localhost"
-							],
-							"port": "8001",
-							"path": [
-								"key-auths"
 							]
 						}
 					},
